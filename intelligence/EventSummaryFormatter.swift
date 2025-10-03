@@ -18,8 +18,8 @@ public struct EventSummaryFormatter {
     // MARK: - Public Types
     
     public struct MinimalSummary: Codable {
-        public let alert_level: String  // "low" | "standard" | "elevated" | "critical"
-        public let summary: String      // Adaptive human narrative, context-aware
+        public let alert_level: String
+        public let summary: String
         
         public init(alert_level: String, summary: String) {
             self.alert_level = alert_level
@@ -32,10 +32,10 @@ public struct EventSummaryFormatter {
         
         var lengthBudget: (min: Int, max: Int) {
             switch self {
-            case .low: return (40, 85)      // Concise, reassuring
-            case .standard: return (60, 120) // Informative, balanced
-            case .elevated: return (80, 160) // Detailed, actionable
-            case .critical: return (90, 200) // Comprehensive, urgent
+            case .low: return (40, 85)
+            case .standard: return (60, 120)
+            case .elevated: return (80, 160)
+            case .critical: return (90, 200)
             }
         }
         
@@ -51,15 +51,13 @@ public struct EventSummaryFormatter {
     
     // MARK: - Adaptive Composition System
     
-    /// Context understanding - extracts meaning from raw event data
     private struct ContextAnalyzer {
         let context: [String: Any]
         let severity: Severity
         let patternType: String?
         var rng: SplitMix64
         
-        // Extract temporal context
-        var timeContext: String {
+        mutating func getTimeContext() -> String {
             if let timestamp = context["timestamp"] as? TimeInterval {
                 let hour = Calendar.current.component(.hour, from: Date(timeIntervalSince1970: timestamp))
                 switch hour {
@@ -76,8 +74,7 @@ public struct EventSummaryFormatter {
             return pick(["just now", "moments ago", "recently"])
         }
         
-        // Extract location context with personality
-        var locationContext: String {
+        mutating func getLocationContext() -> String {
             if let location = context["location"] as? String {
                 let base = location.replacingOccurrences(of: "_", with: " ")
                 switch location.lowercased() {
@@ -96,8 +93,7 @@ public struct EventSummaryFormatter {
             return pick(["outside", "on the property", "near the house"])
         }
         
-        // Understand motion characteristics
-        var motionQuality: String? {
+        mutating func getMotionQuality() -> String? {
             if let duration = context["duration"] as? Double {
                 if duration < 3 {
                     return pick(["fleeting", "very brief", "momentary", "quick"])
@@ -112,58 +108,22 @@ public struct EventSummaryFormatter {
             return nil
         }
         
-        // Helper to pick random variant
         mutating func pick(_ options: [String]) -> String {
+            guard !options.isEmpty else { return "" }
             let index = Int(rng.next() % UInt64(options.count))
             return options[index]
         }
     }
     
-    // MARK: - Seeded PRNG (SplitMix64)
-    
-    private struct SplitMix64 {
-        private var state: UInt64
-        
-        init(seed: UInt64) {
-            self.state = seed
-        }
-        
-        mutating func next() -> UInt64 {
-            state &+= 0x9e3779b97f4a7c15
-            var z = state
-            z = (z ^ (z &>> 30)) &* 0xbf58476d1ce4e5b9
-            z = (z ^ (z &>> 27)) &* 0x94d049bb133111eb
-            return z ^ (z &>> 31)
-        }
-        
-        mutating func nextDouble() -> Double {
-            return Double(next() &>> 11) * 0x1.0p-53
-        }
-        
-        mutating func choose<T>(_ items: [T]) -> T? {
-            guard !items.isEmpty else { return nil }
-            let index = Int(next() % UInt64(items.count))
-            return items[index]
-        }
-    }
-    
-    // MARK: - Adaptive Narrative Composer
-    
-    /// Composes human narratives based on context understanding
     private struct NarrativeComposer {
         var analyzer: ContextAnalyzer
         
-        // Compose opening based on severity and pattern
         mutating func composeOpening() -> String {
             switch analyzer.severity {
-            case .low:
-                return composeLowSeverityOpening()
-            case .standard:
-                return composeStandardOpening()
-            case .elevated:
-                return composeElevatedOpening()
-            case .critical:
-                return composeCriticalOpening()
+            case .low: return composeLowSeverityOpening()
+            case .standard: return composeStandardOpening()
+            case .elevated: return composeElevatedOpening()
+            case .critical: return composeCriticalOpening()
             }
         }
         
@@ -171,120 +131,128 @@ public struct EventSummaryFormatter {
             switch analyzer.patternType {
             case "delivery":
                 return analyzer.pick([
-                    "A delivery person stopped by \(analyzer.timeContext)",
-                    "Package delivered \(analyzer.timeContext)",
-                    "Looks like your delivery arrived \(analyzer.timeContext)"
+                    "Looks like a package was just delivered",
+                    "You've got a delivery at the front door",
+                    "Package arrived a few moments ago"
                 ])
-            case "pet":
+            case "pet_motion":
                 return analyzer.pick([
-                    "Your pet's been exploring \(analyzer.timeContext)",
-                    "Just your furry friend moving around \(analyzer.timeContext)",
-                    "Pet activity detected \(analyzer.timeContext)"
+                    "Just the pet moving around",
+                    "The cat/dog is on the move again",
+                    "Looks like one of the animals is wandering about"
                 ])
             default:
-                if let quality = analyzer.motionQuality {
+                let time = analyzer.getTimeContext()
+                let location = analyzer.getLocationContext()
+                if let quality = analyzer.getMotionQuality() {
                     return analyzer.pick([
-                        "Some \(quality) movement \(analyzer.timeContext) near \(analyzer.locationContext)",
-                        "Noticed \(quality) activity \(analyzer.timeContext) at \(analyzer.locationContext)",
-                        "\(quality.capitalized) motion \(analyzer.timeContext) by \(analyzer.locationContext)"
+                        "Noticed \(quality) activity \(time) at \(location)",
+                        "\(quality.capitalized) motion \(time) by \(location)"
                     ])
                 }
                 return analyzer.pick([
-                    "Brief activity \(analyzer.timeContext) near \(analyzer.locationContext)",
-                    "Something moved \(analyzer.timeContext) at \(analyzer.locationContext)"
+                    "Brief activity \(time) at \(location)",
+                    "Something moved \(time) at \(location)"
                 ])
             }
         }
         
         private mutating func composeStandardOpening() -> String {
+            let time = analyzer.getTimeContext()
+            let location = analyzer.getLocationContext()
+            
             switch analyzer.patternType {
             case "doorbell":
                 return analyzer.pick([
-                    "Someone rang the bell \(analyzer.timeContext)",
-                    "Visitor at \(analyzer.locationContext) \(analyzer.timeContext)",
-                    "The doorbell went off \(analyzer.timeContext)"
+                    "Someone rang the bell \(time)",
+                    "Visitor at \(location) \(time)",
+                    "The doorbell went off \(time)"
                 ])
             case "motion":
-                if let quality = analyzer.motionQuality {
+                if let quality = analyzer.getMotionQuality() {
                     return analyzer.pick([
-                        "I'm seeing \(quality) movement \(analyzer.timeContext) near \(analyzer.locationContext)",
-                        "There's \(quality) activity happening \(analyzer.timeContext) at \(analyzer.locationContext)",
-                        "Detected \(quality) motion \(analyzer.timeContext) by \(analyzer.locationContext)"
+                        "I'm seeing \(quality) movement \(time) near \(location)",
+                        "There's \(quality) activity happening \(time) at \(location)",
+                        "Detected \(quality) motion \(time) by \(location)"
                     ])
                 }
                 return analyzer.pick([
-                    "Motion detected \(analyzer.timeContext) at \(analyzer.locationContext)",
-                    "Activity spotted \(analyzer.timeContext) near \(analyzer.locationContext)"
+                    "Motion detected \(time) at \(location)",
+                    "Activity spotted \(time) near \(location)"
                 ])
             default:
                 return analyzer.pick([
-                    "Something's happening \(analyzer.timeContext) at \(analyzer.locationContext)",
-                    "Activity detected \(analyzer.timeContext) near \(analyzer.locationContext)"
+                    "Something's happening \(time) at \(location)",
+                    "Activity detected \(time) near \(location)"
                 ])
             }
         }
         
         private mutating func composeElevatedOpening() -> String {
+            let time = analyzer.getTimeContext()
+            let location = analyzer.getLocationContext()
+            
             switch analyzer.patternType {
             case "prowler":
                 return analyzer.pick([
-                    "Suspicious movement \(analyzer.timeContext)—someone's moving between multiple areas",
-                    "Concerning activity \(analyzer.timeContext)—an individual is systematically checking different zones",
-                    "Unusual behavior detected \(analyzer.timeContext)—someone appears to be surveilling the property"
+                    "Suspicious movement \(time)—someone's moving between multiple areas",
+                    "Concerning activity \(time)—an individual is systematically checking different zones",
+                    "Unusual behavior detected \(time)—someone appears to be surveilling the property"
                 ])
             case "repeated_door":
                 return analyzer.pick([
-                    "Multiple attempts at \(analyzer.locationContext) \(analyzer.timeContext)",
-                    "Someone's repeatedly trying \(analyzer.locationContext) \(analyzer.timeContext)",
-                    "Persistent activity at \(analyzer.locationContext) \(analyzer.timeContext)—looks like someone testing the door"
+                    "Multiple attempts at \(location) \(time)",
+                    "Someone's repeatedly trying \(location) \(time)",
+                    "Persistent activity at \(location) \(time)—looks like someone testing the door"
                 ])
             default:
-                if let quality = analyzer.motionQuality {
+                if let quality = analyzer.getMotionQuality() {
                     return analyzer.pick([
-                        "Concerning \(quality) activity \(analyzer.timeContext) at \(analyzer.locationContext)",
-                        "Unusual \(quality) movement detected \(analyzer.timeContext) near \(analyzer.locationContext)",
-                        "Suspicious \(quality) behavior \(analyzer.timeContext) by \(analyzer.locationContext)"
+                        "Concerning \(quality) activity \(time) at \(location)",
+                        "Unusual \(quality) movement detected \(time) near \(location)",
+                        "Suspicious \(quality) behavior \(time) by \(location)"
                     ])
                 }
                 return analyzer.pick([
-                    "Unusual activity \(analyzer.timeContext) at \(analyzer.locationContext)",
-                    "Suspicious movement detected \(analyzer.timeContext) near \(analyzer.locationContext)"
+                    "Unusual activity \(time) at \(location)",
+                    "Suspicious movement detected \(time) near \(location)"
                 ])
             }
         }
         
         private mutating func composeCriticalOpening() -> String {
+            let time = analyzer.getTimeContext()
+            let location = analyzer.getLocationContext()
+            
             switch analyzer.patternType {
             case "glass_break":
                 return analyzer.pick([
-                    "🚨 URGENT: Breaking glass detected \(analyzer.timeContext) with movement inside",
-                    "CRITICAL ALERT: Glass break \(analyzer.timeContext)—someone's entering the property",
-                    "EMERGENCY: Window breach \(analyzer.timeContext) with interior activity"
+                    "🚨 URGENT: Breaking glass detected \(time) with movement inside",
+                    "CRITICAL ALERT: Glass break \(time)—someone's entering the property",
+                    "EMERGENCY: Window breach \(time) with interior activity"
                 ])
             case "interior_breach":
                 return analyzer.pick([
-                    "🚨 INTRUDER ALERT: Someone's inside your home \(analyzer.timeContext)",
-                    "CRITICAL: Unauthorized person detected inside \(analyzer.timeContext)",
-                    "EMERGENCY: Interior breach \(analyzer.timeContext)—intruder in the house"
+                    "🚨 INTRUDER ALERT: Someone's inside your home \(time)",
+                    "CRITICAL: Unauthorized person detected inside \(time)",
+                    "EMERGENCY: Interior breach \(time)—intruder in the house"
                 ])
             case "forced_entry":
                 return analyzer.pick([
-                    "🚨 BREAK-IN ATTEMPT: Forceful impacts at \(analyzer.locationContext) \(analyzer.timeContext)",
-                    "CRITICAL: Someone's forcing \(analyzer.locationContext) \(analyzer.timeContext)",
-                    "EMERGENCY: Violent entry attempt at \(analyzer.locationContext) \(analyzer.timeContext)"
+                    "🚨 BREAK-IN ATTEMPT: Forceful impacts at \(location) \(time)",
+                    "CRITICAL: Someone's forcing \(location) \(time)",
+                    "EMERGENCY: Violent entry attempt at \(location) \(time)"
                 ])
             default:
                 return analyzer.pick([
-                    "🚨 CRITICAL SECURITY EVENT \(analyzer.timeContext) at \(analyzer.locationContext)",
-                    "URGENT ALERT: Serious incident \(analyzer.timeContext) near \(analyzer.locationContext)",
-                    "EMERGENCY SITUATION detected \(analyzer.timeContext) at \(analyzer.locationContext)"
+                    "🚨 CRITICAL SECURITY EVENT \(time) at \(location)",
+                    "URGENT ALERT: Serious incident \(time) near \(location)",
+                    "EMERGENCY SITUATION detected \(time) at \(location)"
                 ])
             }
         }
         
-        // Compose contextual details
         mutating func composeDetails() -> String? {
-            // Add details based on available context
             var details: [String] = []
             
             if let confidence = analyzer.context["confidence"] as? Double {
@@ -316,11 +284,10 @@ public struct EventSummaryFormatter {
             return details.isEmpty ? nil : details.joined(separator: ", ")
         }
         
-        // Compose action suggestion
         mutating func composeAction() -> String? {
             switch analyzer.severity {
             case .low:
-                return nil  // No action needed for low severity
+                return nil
             case .standard:
                 return analyzer.pick([
                     "Worth checking when you get a chance.",
@@ -345,7 +312,6 @@ public struct EventSummaryFormatter {
     
     // MARK: - Public API
     
-    /// Generate minimal summary JSON from threat level and context
     public static func generateMinimalSummary(
         threatLevel: String,
         patternType: String? = nil,
@@ -353,7 +319,6 @@ public struct EventSummaryFormatter {
         seed: UInt64? = nil
     ) -> MinimalSummary {
         
-        // Map threat level to severity
         let severity: Severity
         switch threatLevel.lowercased() {
         case "low": severity = .low
@@ -363,10 +328,7 @@ public struct EventSummaryFormatter {
         default: severity = .standard
         }
         
-        // Generate seed if not provided
         let finalSeed = seed ?? UInt64(Date().timeIntervalSince1970 * 1000)
-        
-        // Generate human summary
         let summary = generateSummary(
             severity: severity,
             patternType: patternType,
@@ -380,7 +342,6 @@ public struct EventSummaryFormatter {
         )
     }
     
-    /// Generate adaptive human summary with contextual understanding
     private static func generateSummary(
         severity: Severity,
         patternType: String?,
@@ -389,24 +350,18 @@ public struct EventSummaryFormatter {
     ) -> String {
         
         var rng = SplitMix64(seed: seed)
-        
-        // Create context analyzer
         var analyzer = ContextAnalyzer(
             context: context,
             severity: severity,
             patternType: patternType,
             rng: rng
         )
-        
-        // Create narrative composer
         var composer = NarrativeComposer(analyzer: analyzer)
         
-        // Compose the narrative parts
         let opening = composer.composeOpening()
         let details = composer.composeDetails()
         let action = composer.composeAction()
         
-        // Assemble the complete narrative
         var parts: [String] = [opening]
         if let details = details {
             parts.append(details)
@@ -417,34 +372,26 @@ public struct EventSummaryFormatter {
         
         var summary = parts.joined(separator: ". ")
         
-        // Ensure proper sentence ending
         if !summary.hasSuffix(".") && !summary.hasSuffix("!") && !summary.hasSuffix("?") {
             summary += "."
         }
         
-        // Adaptive length management based on severity
         let budget = severity.lengthBudget
-        if summary.count < budget.min {
-            // Too short - add contextual filler if needed
-            // (Current implementation is already adaptive, so this is rare)
-        } else if summary.count > budget.max {
-            // Too long - intelligently trim
+        if summary.count > budget.max {
             summary = trimToLength(summary, maxLength: budget.max, preserveMeaning: true)
         }
         
         return summary
     }
     
-    /// Intelligently trim summary while preserving meaning
     private static func trimToLength(_ text: String, maxLength: Int, preserveMeaning: Bool) -> String {
         guard text.count > maxLength else { return text }
         
-        // Try to find a sentence boundary first
         let sentences = text.components(separatedBy: ". ")
         var result = ""
         for sentence in sentences {
             let potential = result.isEmpty ? sentence : result + ". " + sentence
-            if potential.count <= maxLength - 3 {  // Leave room for ellipsis
+            if potential.count <= maxLength - 3 {
                 result = potential
             } else {
                 break
@@ -455,7 +402,6 @@ public struct EventSummaryFormatter {
             return result + (result.hasSuffix(".") ? ".." : "...")
         }
         
-        // Fall back to word boundary
         let trimmed = String(text.prefix(maxLength - 3))
         if let lastSpace = trimmed.lastIndex(of: " ") {
             return String(trimmed[..<lastSpace]) + "..."
@@ -464,17 +410,14 @@ public struct EventSummaryFormatter {
         return String(text.prefix(maxLength - 3)) + "..."
     }
     
-    /// Generate seed from event identity (deterministic per event)
     public static func generateSeed(
         eventId: String? = nil,
         timestamp: TimeInterval,
         deviceId: String? = nil
     ) -> UInt64 {
         
-        // Bucket timestamp to minute to avoid micro-jitter
         let timestampBucket = UInt64(timestamp / 60.0)
         
-        // Combine components
         var hasher = Hasher()
         if let eventId = eventId {
             hasher.combine(eventId)
@@ -488,10 +431,7 @@ public struct EventSummaryFormatter {
     }
 }
 
-// MARK: - Convenience Extensions
-
 extension EventSummaryFormatter.MinimalSummary {
-    /// Convert to JSON string
     public func toJSON() throws -> String {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
