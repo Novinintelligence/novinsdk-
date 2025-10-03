@@ -23,3 +23,6 @@ Python.xcframework.zip
 # Misc
 *.swp
 *.log
+Python.xcframework/
+NovinAI-SPM/Vendor/Python-iOS/
+# ignore nested vendor git dirs if recreated
