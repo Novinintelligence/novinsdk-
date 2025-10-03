@@ -1,26 +1,46 @@
-// swift-tools-version:5.7
+// swift-tools-version:5.9
 import PackageDescription
 
 let package = Package(
     name: "NovinIntelligence",
     platforms: [
-        .iOS(.v15), 
+        .iOS(.v15),
         .macOS(.v12)
     ],
     products: [
         .library(
             name: "NovinIntelligence",
-            targets: ["NovinIntelligence"]),
+            targets: ["NovinIntelligence"]
+        )
     ],
-    dependencies: [],
     targets: [
         .target(
             name: "NovinIntelligence",
             dependencies: [],
-            path: "intelligence"),
+            path: "Sources/NovinIntelligence",
+            exclude: [
+                "Resources/python"
+            ],
+            resources: [
+                .copy("Rules")
+            ],
+            plugins: []
+        ),
         .testTarget(
             name: "NovinIntelligenceTests",
             dependencies: ["NovinIntelligence"],
-            path: "intelligenceTests"),
+            exclude: [
+                // Legacy Python-based tests
+                "test_crime_intelligence.py",
+                "test_neural_network.py",
+                "test_security_system.py",
+                "run_tests.py",
+                "simple_test.py",
+                // Legacy Swift tests referencing removed ML/Python APIs
+                "FullSDKBattleTest.swift",
+                "NovinIntelligenceTests.swift",
+                "ProductionBridgeTests.swift"
+            ]
+        )
     ]
 )

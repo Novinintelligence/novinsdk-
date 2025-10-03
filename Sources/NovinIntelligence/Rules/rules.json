@@ -1,0 +1,65 @@
+[
+  {
+    "name": "night_motion_suspicious",
+    "conditions": ["time_night", "event_motion", "away_mode"],
+    "weight": 2.0,
+    "score": 0.85,
+    "description": "Motion detected at night while away"
+  },
+  {
+    "name": "door_open_high_crime",
+    "conditions": ["event_door", "high_crime"],
+    "weight": 2.2,
+    "score": 0.90,
+    "description": "Door activity in high-crime area"
+  },
+  {
+    "name": "window_breach",
+    "conditions": ["event_window", "unusual_hour"],
+    "weight": 2.5,
+    "score": 0.95,
+    "description": "Window sensor trigger at unusual time"
+  },
+  {
+    "name": "unknown_face_detected",
+    "conditions": ["event_face", "away_mode", "high_crime"],
+    "weight": 2.8,
+    "score": 0.98,
+    "description": "Unknown face in high-risk context"
+  },
+  {
+    "name": "glass_break_emergency",
+    "conditions": ["event_glassbreak"],
+    "weight": 3.0,
+    "score": 1.00,
+    "description": "Immediate glass break detection"
+  },
+  {
+    "name": "multiple_sensor_correlation",
+    "conditions": ["multiple_sensors", "recent_event", "high_confidence"],
+    "weight": 1.8,
+    "score": 0.80,
+    "description": "Correlated sensor triggers"
+  },
+  {
+    "name": "unusual_activity_pattern",
+    "conditions": ["unusual_activity", "unusual_hour"],
+    "weight": 1.6,
+    "score": 0.75,
+    "description": "Anomalous behavioral pattern"
+  },
+  {
+    "name": "sound_alert_night",
+    "conditions": ["event_sound", "time_night"],
+    "weight": 1.4,
+    "score": 0.70,
+    "description": "Unusual sound at night"
+  },
+  {
+    "name": "pet_false_positive",
+    "conditions": ["event_pet", "time_day", "low_crime"],
+    "weight": 0.3,
+    "score": 0.10,
+    "description": "Pet activity during day in safe area (reduce false positive)"
+  }
+]

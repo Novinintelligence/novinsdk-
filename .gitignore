@@ -1,29 +1,28 @@
 # macOS
 .DS_Store
-.AppleDouble
-.LSOverride
 
-# Swift & Xcode
-build/
+# SwiftPM
 .build/
-*.xcodeproj
-*.xcworkspace
-*.xcscmblueprint
-*.xccheckout
-*.moved-aside
-DerivedData/
-*.hmap
-*.ipa
-*.dSYM/
-
-# Swift Package Manager
 .swiftpm/
 Packages/
 
-# Secrets & Credentials
-*.keys
-*.env
-credentials.json
+# Xcode / Derived Data
+DerivedData/
+*.xcuserstate
+*.xcbkptlist
+xcuserdata/
 
-# Local History
-.history/
+# Editors/IDEs
+.idea/
+.vscode/
+
+# Artifacts / Large files
+artifacts/
+Python.xcframework.zip
+
+# Misc
+*.swp
+*.log
+Python.xcframework/
+NovinAI-SPM/Vendor/Python-iOS/
+# ignore nested vendor git dirs if recreated

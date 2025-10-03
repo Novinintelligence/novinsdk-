@@ -1,0 +1,20 @@
+{
+  "systemMode": "away",
+  "clientId": "spm_test",
+  "location": { "lat": 37.7749, "lon": -122.4194 },
+  "deviceInfo": { "battery": 82, "firmware": "2.0.0" },
+  "events": [
+    {
+      "type": "motion",
+      "confidence": 0.82,
+      "timestamp": "2025-09-27T12:00:00Z",
+      "metadata": { "sensor": "camera_front" }
+    },
+    {
+      "type": "sound",
+      "confidence": 0.91,
+      "metadata": { "decibels": 95, "pattern": "glassbreak" },
+      "timestamp": "2025-09-27T12:00:02Z"
+    }
+  ]
+}
