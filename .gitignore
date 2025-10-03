@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# SwiftPM
+.build/
+.swiftpm/
+Packages/
+
+# Xcode / Derived Data
+DerivedData/
+*.xcuserstate
+*.xcbkptlist
+xcuserdata/
+
+# Editors/IDEs
+.idea/
+.vscode/
+
+# Artifacts / Large files
+artifacts/
+Python.xcframework.zip
+
+# Misc
+*.swp
+*.log
