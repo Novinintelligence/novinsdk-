@@ -1,0 +1,13 @@
+%% FIG. 6: Minimal JSON Contract and Integration
+sequenceDiagram
+  participant Client
+  participant SDK as On-Device SDK
+  participant Integration as EventSummaryIntegration
+  participant Formatter as EventSummaryFormatter
+  Client->>SDK: assess(requestJson)
+  SDK-->>Integration: result(threatLevel) + eventJson
+  Integration->>Integration: detectPatternType(json)
+  Integration->>Formatter: generateSeed(eventId, bucketedTimestamp, deviceId)
+  Integration->>Formatter: generateMinimalSummary(threatLevel, patternType, context, seed)
+  Formatter-->>Integration: MinimalSummary(alert_level, summary)
+  Integration-->>Client: toJSON() -> {alert_level, summary}

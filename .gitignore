@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Swift & Xcode
+build/
+.build/
+*.xcodeproj
+*.xcworkspace
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM/
+
+# Swift Package Manager
+.swiftpm/
+Packages/
+
+# Secrets & Credentials
+*.keys
+*.env
+credentials.json
+
+# Local History
+.history/

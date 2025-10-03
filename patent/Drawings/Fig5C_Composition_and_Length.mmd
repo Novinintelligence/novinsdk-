@@ -1,0 +1,20 @@
+%% FIG. 5C: Composition & Length Control
+flowchart TB
+  S[Severity] -->|low| O1[Low Opening]
+  S -->|standard| O2[Standard Opening]
+  S -->|elevated| O3[Elevated Opening]
+  S -->|critical| O4[Critical Opening]
+  subgraph Compose
+    O1 --> J[Joiner]
+    O2 --> J
+    O3 --> J
+    O4 --> J
+    Ctx[Contextual Details] --> J
+    Act[Action Suggestion] --> J
+  end
+  J --> B[Budget by Severity\n(min,max chars)]
+  B --> Trim{Exceeds max?}
+  Trim -- Yes --> T1[Trim at sentence/word boundary + ellipsis]
+  Trim -- No --> T2[Keep as is]
+  T1 --> X[Final]
+  T2 --> X

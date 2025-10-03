@@ -1,0 +1,15 @@
+%% FIG. 2: Processing Pipeline
+sequenceDiagram
+  participant Client
+  participant SDK as On-Device SDK
+  participant Pipeline as Pipeline Layers
+  Client->>SDK: assess(requestJson)
+  SDK->>Pipeline: validate + rate limit
+  Pipeline->>Pipeline: chain detection (60s)
+  Pipeline->>Pipeline: motion analysis (vDSP)
+  Pipeline->>Pipeline: zone risk + escalation
+  Pipeline->>Pipeline: feature extraction + rules
+  Pipeline->>Pipeline: Bayesian fusion
+  Pipeline->>Pipeline: temporal dampening
+  Pipeline->>SDK: severity + explanation
+  SDK-->>Client: result (15–30ms)

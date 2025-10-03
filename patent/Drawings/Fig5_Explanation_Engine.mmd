@@ -1,0 +1,10 @@
+%% FIG. 5: Adaptive Explanation Engine
+flowchart TB
+  A[Context Analyzer] --> O[Opening Composer]
+  A --> D[Details Composer]
+  A --> S[Suggestion Composer]
+  O --> J[Joiner]
+  D --> J
+  S --> J
+  J --> L[Length/Tone Adjust]
+  L --> X[Final Narrative]

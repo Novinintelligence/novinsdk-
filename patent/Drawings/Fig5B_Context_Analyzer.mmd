@@ -1,0 +1,16 @@
+%% FIG. 5B: Context Analyzer (Time/Location/Motion)
+flowchart TB
+  C[Context JSON] --> T[Timestamp -> Hour]
+  T --> TP[Time Phrases\n(e.g., "this afternoon", "late at night")]
+  C --> L[Location String]
+  L --> LP[Location Phrases\n(front/back/garage/window/other)]
+  C --> D[Duration (s)]
+  D --> MQ[Motion Quality\n(fleeting/brief/sustained/lengthy)]
+  subgraph Pickers [Seeded Pick()]
+    TP --> P1[Pick()]
+    LP --> P2[Pick()]
+    MQ --> P3[Pick()]
+  end
+  P1 --> U[timeContext]
+  P2 --> V[locationContext]
+  P3 --> W[motionQuality]

@@ -1,0 +1,16 @@
+%% FIG. 5A: Seeded Variation (SplitMix64 + Seed Derivation)
+flowchart LR
+  I[Event Identity\n(eventId, timestamp, deviceId)] --> B[Bucket Timestamp\n(to minute)]
+  B --> H[Hash Combine\n(eventId || bucket || deviceId)]
+  H --> S[Seed (UInt64)]
+  S --> G[SplitMix64 PRNG]
+  subgraph Variants [Variant Pickers]
+    G --> VO[Opening Variants]
+    G --> VD[Detail Variants]
+    G --> VA[Action Variants]
+  end
+  VO --> J[Joiner]
+  VD --> J
+  VA --> J
+  J --> L[Length & Tone by Severity]
+  L --> X[Final Narrative]

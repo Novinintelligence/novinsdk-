@@ -1,0 +1,15 @@
+%% FIG. 1: System Block Diagram
+flowchart LR
+  A[Sensor Events] --> V[Input Validation]
+  V --> R[Rate Limiter]
+  R --> W[Event Window Buffer]
+  W --> C[Event Chain Analyzer]
+  W --> M[Motion Analyzer (vDSP)]
+  W --> Z[Zone Classifier]
+  C --> F[Feature/Rule Reasoning]
+  M --> F
+  Z --> F
+  F --> B[Bayesian Fusion (log-odds)]
+  B --> T[Temporal Dampening & Context]
+  T --> E[Adaptive Explanation Engine]
+  E --> O[Threat Level + Narrative]

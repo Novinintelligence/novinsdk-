@@ -1,0 +1,9 @@
+%% FIG. 4: Bayesian Fusion (Log-Odds)
+flowchart LR
+  E1[Temporal Evidence] --> L[Log-Odds Accumulator]
+  E2[Event Evidence] --> L
+  E3[Behavioral Evidence] --> L
+  subgraph L[Log-Odds]
+    L1[Base Prior] --> L2[Add log(LR_i * weight_i * strength_i)]
+  end
+  L --> P[Probability & Threat Level]

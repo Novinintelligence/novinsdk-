@@ -1,0 +1,12 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test -project /Users/Ollie/Desktop/intelligence/intelligence.xcodeproj -scheme intelligence -destination "platform=iOS Simulator,name=iPhone 15 Pro,OS=latest" "-only-testing:intelligenceTests/AdaptabilityTests"
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  NovinIntelligence: /Users/Ollie/novin_intelligence-main @ local
+
+2025-10-02 13:30:23.621 xcodebuild[10012:575779] Writing error result bundle to /var/folders/rt/zldh5bg13gs3yf3yj98809nw0000gp/T/ResultBundle_2025-02-10_13-30-0023.xcresult
+xcodebuild: error: Scheme intelligence is not currently configured for the test action.
+

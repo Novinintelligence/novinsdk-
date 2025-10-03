@@ -1,0 +1,17 @@
+%% FIG. 3: Event-Chain Patterns
+flowchart TB
+  subgraph Delivery
+    D1[Doorbell] --> D2[Motion (2–30s)] --> D3[Silence ≥20s]
+  end
+  subgraph Intrusion
+    I1[Motion] --> I2[Door/Window Event] --> I3[Continued Motion]
+  end
+  subgraph ForcedEntry
+    F1[Door/Window Event x3 in 15s]
+  end
+  subgraph BreakIn
+    B1[Glass Break] --> B2[Motion ≤20s]
+  end
+  subgraph Prowler
+    P1[Zone A Motion] --> P2[Zone B Motion] --> P3[Zone C Motion]
+  end
