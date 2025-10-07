@@ -17,7 +17,10 @@ let package = Package(
         .target(
             name: "Novin",
             dependencies: [],
-            path: "Sources/Novin"
+            path: "Sources/Novin",
+            resources: [
+                .process("Rules")
+            ]
         )
     ]
 )
