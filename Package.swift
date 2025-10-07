@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "NovinFramework",
+    name: "Novin",
     platforms: [
         .iOS(.v15),
         .macOS(.v12)
