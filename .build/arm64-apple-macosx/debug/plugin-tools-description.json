@@ -1,0 +1,762 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.Novin-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/sources",
+      "importPath" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/AuditTrail.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/EventChainAnalyzer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/MotionAnalyzer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/ZoneClassifier.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Configuration/ReasoningConfig.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Configuration/TemporalConfiguration.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/FeatureExtractor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/ReasoningSwift.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/SymbolicReasoningEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/SymbolicTranslator.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/EnvironmentalMirror.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/ExplanationEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/SymbolicUpdater.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/AffordanceDetector.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/AffordancePlanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/BeliefStore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/IntelligentFusion.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Learning/UserPatterns.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Action.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/ObjectNode.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Plan.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Predicate.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Relation.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/WorldStateGraph.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Monitoring/SystemHealth.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/NovinIntelligence.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/NovinIntelligenceError.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/PythonBridge.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/FearHeuristic.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/InputValidator.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/NormalityTracker.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/RateLimiter.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/SDKMode.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/SecurityAssessment.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Telemetry/MirrorTelemetry.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Telemetry/TemporalTelemetry.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "Novin",
+      "moduleOutputPath" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Modules/Novin.swiftmodule",
+      "objects" : [
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AuditTrail.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EventChainAnalyzer.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MotionAnalyzer.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ZoneClassifier.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningConfig.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalConfiguration.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FeatureExtractor.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningSwift.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicReasoningEngine.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicTranslator.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EnvironmentalMirror.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ExplanationEngine.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicUpdater.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordanceDetector.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordancePlanner.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/BeliefStore.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/IntelligentFusion.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/UserPatterns.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Action.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ObjectNode.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Plan.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Predicate.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Relation.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/WorldStateGraph.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SystemHealth.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligence.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligenceError.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/PythonBridge.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FearHeuristic.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/InputValidator.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NormalityTracker.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/RateLimiter.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SDKMode.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SecurityAssessment.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MirrorTelemetry.swift.o",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalTelemetry.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx12.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/include/Novin-Swift.h",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "novinframework"
+      ],
+      "outputFileMapPath" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AuditTrail.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EventChainAnalyzer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MotionAnalyzer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ZoneClassifier.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningConfig.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalConfiguration.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FeatureExtractor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningSwift.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicReasoningEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicTranslator.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EnvironmentalMirror.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ExplanationEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicUpdater.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordanceDetector.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordancePlanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/BeliefStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/IntelligentFusion.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/UserPatterns.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Action.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ObjectNode.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Plan.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Predicate.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Relation.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/WorldStateGraph.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SystemHealth.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligence.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligenceError.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/PythonBridge.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FearHeuristic.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/InputValidator.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NormalityTracker.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/RateLimiter.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SDKMode.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SecurityAssessment.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MirrorTelemetry.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalTelemetry.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Modules/Novin.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/AuditTrail.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/EventChainAnalyzer.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/MotionAnalyzer.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/ZoneClassifier.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Configuration/ReasoningConfig.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Configuration/TemporalConfiguration.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/FeatureExtractor.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/ReasoningSwift.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/SymbolicReasoningEngine.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/SymbolicTranslator.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/EnvironmentalMirror.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/ExplanationEngine.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/SymbolicUpdater.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/AffordanceDetector.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/AffordancePlanner.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/BeliefStore.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/IntelligentFusion.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Learning/UserPatterns.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Action.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/ObjectNode.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Plan.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Predicate.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Relation.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/WorldStateGraph.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Monitoring/SystemHealth.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/NovinIntelligence.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/NovinIntelligenceError.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/PythonBridge.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/FearHeuristic.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/InputValidator.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/NormalityTracker.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/RateLimiter.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/SDKMode.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/SecurityAssessment.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Telemetry/MirrorTelemetry.swift",
+        "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Telemetry/TemporalTelemetry.swift"
+      ],
+      "tempsPath" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "Novin" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "Novin",
+      "-package-name",
+      "novinframework",
+      "-c",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/AuditTrail.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/EventChainAnalyzer.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/MotionAnalyzer.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/ZoneClassifier.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Configuration/ReasoningConfig.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Configuration/TemporalConfiguration.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/FeatureExtractor.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/ReasoningSwift.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/SymbolicReasoningEngine.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/SymbolicTranslator.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/EnvironmentalMirror.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/ExplanationEngine.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/SymbolicUpdater.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/AffordanceDetector.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/AffordancePlanner.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/BeliefStore.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/IntelligentFusion.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Learning/UserPatterns.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Action.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/ObjectNode.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Plan.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Predicate.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Relation.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/WorldStateGraph.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Monitoring/SystemHealth.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/NovinIntelligence.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/NovinIntelligenceError.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/PythonBridge.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/FearHeuristic.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/InputValidator.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/NormalityTracker.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/RateLimiter.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/SDKMode.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/SecurityAssessment.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Telemetry/MirrorTelemetry.swift",
+      "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Telemetry/TemporalTelemetry.swift",
+      "-I",
+      "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx12.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/include/Novin-Swift.h",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "novinframework",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "Novin" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/AuditTrail.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/EventChainAnalyzer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/MotionAnalyzer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/ZoneClassifier.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Configuration/ReasoningConfig.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Configuration/TemporalConfiguration.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/FeatureExtractor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/ReasoningSwift.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/SymbolicReasoningEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/SymbolicTranslator.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/EnvironmentalMirror.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/ExplanationEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/SymbolicUpdater.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/AffordanceDetector.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/AffordancePlanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/BeliefStore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/IntelligentFusion.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Learning/UserPatterns.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Action.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/ObjectNode.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Plan.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Predicate.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Relation.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/WorldStateGraph.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Monitoring/SystemHealth.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/NovinIntelligence.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/NovinIntelligenceError.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/PythonBridge.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/FearHeuristic.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/InputValidator.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/NormalityTracker.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/RateLimiter.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/SDKMode.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/SecurityAssessment.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Telemetry/MirrorTelemetry.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Telemetry/TemporalTelemetry.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/sources"
+    },
+    "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

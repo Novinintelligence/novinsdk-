@@ -1,0 +1,44 @@
+[tool.briefcase]
+project_name = "NovinIntelligence"
+bundle = "com.novinai"
+version = "0.0.1"
+url = "https://novin.ai"
+license = "BSD license"
+author = "NovinIntelligence"
+author_email = "info@novin.ai"
+
+[tool.briefcase.app.novin-intelligence]
+formal_name = "Novin AI Security"
+description = "AI-powered home security threat assessment system"
+icon = "resources/novin_icon"
+sources = ["src/novin_intelligence"]
+requires = [
+    "numpy",
+    "scipy",
+    "cryptography",  # For model signing
+    "psutil",  # Optional for monitoring
+]
+
+# Desktop config
+[tool.briefcase.app.novin-intelligence.linux]
+requires = []
+
+[tool.briefcase.app.novin-intelligence.windows]
+requires = []
+
+[tool.briefcase.app.novin-intelligence.osx]
+requires = []
+
+# iOS config
+[tool.briefcase.app.novin-intelligence.ios]
+requires = [
+    "pyobjus",  # For iOS bridges if needed
+]
+minimum_ios_version = "12.0"
+
+# Android config
+[tool.briefcase.app.novin-intelligence.android]
+requires = [
+    "chaquopy",  # For Android Python bridges
+]
+min_sdk_version = 21

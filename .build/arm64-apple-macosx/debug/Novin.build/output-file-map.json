@@ -1,0 +1,257 @@
+{
+  "": {
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/master.swiftdeps"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/AuditTrail.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AuditTrail.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AuditTrail.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AuditTrail~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AuditTrail.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AuditTrail.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/EventChainAnalyzer.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EventChainAnalyzer.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EventChainAnalyzer.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EventChainAnalyzer~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EventChainAnalyzer.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EventChainAnalyzer.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/MotionAnalyzer.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MotionAnalyzer.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MotionAnalyzer.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MotionAnalyzer~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MotionAnalyzer.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MotionAnalyzer.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Analytics/ZoneClassifier.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ZoneClassifier.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ZoneClassifier.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ZoneClassifier~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ZoneClassifier.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ZoneClassifier.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Configuration/ReasoningConfig.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningConfig.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningConfig.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningConfig~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningConfig.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningConfig.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Configuration/TemporalConfiguration.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalConfiguration.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalConfiguration.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalConfiguration~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalConfiguration.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalConfiguration.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/FeatureExtractor.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FeatureExtractor.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FeatureExtractor.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FeatureExtractor~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FeatureExtractor.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FeatureExtractor.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/ReasoningSwift.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningSwift.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningSwift.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningSwift~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningSwift.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ReasoningSwift.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/SymbolicReasoningEngine.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicReasoningEngine.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicReasoningEngine.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicReasoningEngine~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicReasoningEngine.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicReasoningEngine.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/CoreML/SymbolicTranslator.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicTranslator.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicTranslator.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicTranslator~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicTranslator.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicTranslator.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/EnvironmentalMirror.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EnvironmentalMirror.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EnvironmentalMirror.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EnvironmentalMirror~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EnvironmentalMirror.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/EnvironmentalMirror.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/ExplanationEngine.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ExplanationEngine.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ExplanationEngine.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ExplanationEngine~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ExplanationEngine.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ExplanationEngine.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Explainability/SymbolicUpdater.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicUpdater.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicUpdater.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicUpdater~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicUpdater.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SymbolicUpdater.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/AffordanceDetector.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordanceDetector.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordanceDetector.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordanceDetector~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordanceDetector.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordanceDetector.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/AffordancePlanner.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordancePlanner.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordancePlanner.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordancePlanner~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordancePlanner.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/AffordancePlanner.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/BeliefStore.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/BeliefStore.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/BeliefStore.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/BeliefStore~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/BeliefStore.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/BeliefStore.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/IntelligentFusion/IntelligentFusion.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/IntelligentFusion.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/IntelligentFusion.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/IntelligentFusion~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/IntelligentFusion.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/IntelligentFusion.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Learning/UserPatterns.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/UserPatterns.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/UserPatterns.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/UserPatterns~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/UserPatterns.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/UserPatterns.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Action.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Action.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Action.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Action~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Action.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Action.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/ObjectNode.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ObjectNode.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ObjectNode.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ObjectNode~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ObjectNode.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/ObjectNode.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Plan.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Plan.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Plan.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Plan~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Plan.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Plan.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Predicate.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Predicate.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Predicate.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Predicate~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Predicate.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Predicate.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/Relation.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Relation.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Relation.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Relation~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Relation.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/Relation.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Models/WorldStateGraph.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/WorldStateGraph.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/WorldStateGraph.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/WorldStateGraph~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/WorldStateGraph.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/WorldStateGraph.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Monitoring/SystemHealth.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SystemHealth.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SystemHealth.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SystemHealth~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SystemHealth.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SystemHealth.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/NovinIntelligence.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligence.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligence.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligence~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligence.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligence.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/NovinIntelligenceError.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligenceError.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligenceError.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligenceError~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligenceError.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NovinIntelligenceError.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/PythonBridge.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/PythonBridge.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/PythonBridge.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/PythonBridge~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/PythonBridge.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/PythonBridge.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/FearHeuristic.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FearHeuristic.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FearHeuristic.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FearHeuristic~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FearHeuristic.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/FearHeuristic.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/InputValidator.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/InputValidator.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/InputValidator.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/InputValidator~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/InputValidator.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/InputValidator.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/NormalityTracker.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NormalityTracker.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NormalityTracker.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NormalityTracker~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NormalityTracker.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/NormalityTracker.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/RateLimiter.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/RateLimiter.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/RateLimiter.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/RateLimiter~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/RateLimiter.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/RateLimiter.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Security/SDKMode.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SDKMode.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SDKMode.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SDKMode~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SDKMode.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SDKMode.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/SecurityAssessment.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SecurityAssessment.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SecurityAssessment.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SecurityAssessment~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SecurityAssessment.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/SecurityAssessment.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Telemetry/MirrorTelemetry.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MirrorTelemetry.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MirrorTelemetry.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MirrorTelemetry~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MirrorTelemetry.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/MirrorTelemetry.dia"
+  },
+  "/Users/Ollie/Desktop/NovinFramework/Sources/Novin/Telemetry/TemporalTelemetry.swift": {
+    "dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalTelemetry.d",
+    "object": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalTelemetry.swift.o",
+    "swiftmodule": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalTelemetry~partial.swiftmodule",
+    "swift-dependencies": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalTelemetry.swiftdeps",
+    "diagnostics": "/Users/Ollie/Desktop/NovinFramework/.build/arm64-apple-macosx/debug/Novin.build/TemporalTelemetry.dia"
+  }
+}
