@@ -33,19 +33,37 @@ behavior suggests someone dropped something off rather than lingering.
 
 ## ⚡ Quick Start
 
-### Installation
+### Install via SPM (Git URL)
 
-**Swift Package Manager** (Xcode):
+- Xcode UI
+  1) File → Add Packages…
+  2) URL: `https://github.com/Novinintelligence/novinsdk-.git`
+  3) Version: Up to Next Major, starting at `0.1.0`
+  4) Add product `Novin` to your app target
+
+- Package.swift example
 ```swift
-// Add to Package.swift
-dependencies: [
-    .package(path: "/path/to/novin_intelligence-main")
-]
+// swift-tools-version: 6.0
+import PackageDescription
 
-// Or in Xcode: File → Add Package Dependencies → Local Path
+let package = Package(
+  name: "YourApp",
+  platforms: [ .iOS(.v15), .macOS(.v12) ],
+  dependencies: [
+    .package(url: "https://github.com/Novinintelligence/novinsdk-.git", from: "0.1.0")
+  ],
+  targets: [
+    .target(
+      name: "YourAppTarget",
+      dependencies: [
+        .product(name: "Novin", package: "novinsdk-")
+      ]
+    )
+  ]
+)
 ```
 
-### Integration (2 Lines)
+### Exact Initialization
 
 ```swift
 import NovinIntelligence
@@ -74,6 +92,26 @@ print(result.recommendation)    // "Check for packages when you return"
 ```
 
 That's it! All features work automatically.
+
+### Production CLI (novin-prod)
+
+Build once, then pipe JSON events—no Xcode/simulator required.
+
+```bash
+swift build -c release --product novin-prod
+
+# Stdin
+echo '{"type":"motion","confidence":0.85,"timestamp":1730000000,
+       "metadata":{"location":"front_door","home_mode":"home","duration":6,"energy":0.08}}' | .build/release/novin-prod --verbose
+
+# From file (one JSON per line)
+.build/release/novin-prod --verbose --file events.jsonl
+```
+
+Output (one JSON line/event):
+```json
+{"threat":"standard","confidence":0.72,"processing_ms":0.42,"request_id":"...","timestamp":"...","summary":"...","reasoning":"..."}
+```
 
 ---
 
