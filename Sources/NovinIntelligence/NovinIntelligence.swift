@@ -23,12 +23,26 @@ public final class NovinIntelligence: @unchecked Sendable {
             try await existing.value
             return
         }
-                        self.currentMode = .minimal
-                        Logger(subsystem: "com.novinintelligence", category: "init").warning("Feature extraction failed, entering minimal mode")
-                    }
-                    
-                    // Load user patterns (graceful degradation if fails)
-                    // Note: UserPatterns.load() doesn't throw, but we wrap for future-proofing
+
+        // Create a single shared task to perform initialization work
+        let task = Task {
+            try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+                processingQueue.async {
+                    do {
+                        // Load rules from bundled JSON (or fallback)
+                        var engine = self.reasoningEngine
+                        let count = engine.loadRules()
+                        self.reasoningEngine = engine
+
+                        // Perform a lightweight feature extraction sanity check
+                        let sanity = self.featureExtractor.extractNamedFeatures(from: [:])
+                        if sanity.isEmpty {
+                            // Graceful degradation: Fall back to minimal mode
+                            self.currentMode = .minimal
+                            Logger(subsystem: "com.novinintelligence", category: "init").warning("Feature extraction failed, entering minimal mode")
+                        }
+
+                        // Load user patterns (graceful degradation if fails)
                         Self.sharedUserPatterns = UserPatterns.load()
 
                         self.isInitialized = true
