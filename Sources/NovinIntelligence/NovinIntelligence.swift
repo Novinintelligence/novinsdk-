@@ -8,200 +8,47 @@ public final class NovinIntelligence: @unchecked Sendable {
 
     // MARK: - State
     private var isInitialized = false
-    private var currentMode: SDKMode = .full
-    // Training-free reasoning flags (no-op until features wired in)
-    private var reasoningConfig: ReasoningConfig = .default
-
-    // MARK: - Processing
-    private let processingQueue = DispatchQueue(label: "com.novinintelligence.processing", qos: .userInitiated)
-
-    // MARK: - Core AI Components
-    private let featureExtractor = FeatureExtractorSwift()
-    private var reasoningEngine = ReasoningSwift()
-    private let fusionEngine = IntelligentFusion()
-    // Phase 2: FEAR-Chain components (lightweight, deterministic)
-    private let fearHeuristic = FearHeuristic()
-    private let normalityTracker = NormalityTracker()
-    private var safetyAdjustment: Double = 0.0 // FEAR-Chain adjustment (0.0 - 1.0)
-    // Phase 3: Symbolic planner components (training-free)
-    private let symbolicPlanner = SymbolicReasoningEngine()
-    private let affordancePlanner = AffordancePlanner()
-    private let symbolicTranslator = SymbolicTranslator()
-    // Phase 4: Environmental mirror components (training-free)
-    private let environmentalMirror = EnvironmentalMirror()
-    private let symbolicUpdater = SymbolicUpdater()
-    private var applyMirrorUpdates: Bool = false
-    private var mirrorAddedPredicates: Set<String> = []
-    private var mirrorSuppressedPredicates: Set<String> = []
-
-    // MARK: - Enterprise Components
-    private let rateLimiter = RateLimiter(maxTokens: 100, refillRate: 100)
-    private let eventChainAnalyzer = EventChainAnalyzer()
-    private let zoneClassifier = ZoneClassifier()
-    // P1: Minimal belief store (progressive reasoning, lightweight, deterministic)
-    private var beliefStore = MinimalBeliefStore()
-    
-    // MARK: - Version
-    public static let sdkVersion = "2.0.0-enterprise"
-    
-    private init() {}
-    
-    // MARK: - Enterprise Configuration API
-    
-    // Private static storage for enterprise config (accessed via instance methods)
-    private static var sharedTemporalConfig: TemporalConfiguration = .default
-    private static var sharedUserPatterns: UserPatterns = UserPatterns.load()
-    
-    /// Configure temporal intelligence settings
-    /// - Parameter config: Temporal configuration (default, aggressive, or conservative)
-    public func configure(temporal config: TemporalConfiguration) throws {
-        try config.validate()
-        Self.sharedTemporalConfig = config
-    }
-    
-    /// Get current temporal configuration
-    public func getTemporalConfiguration() -> TemporalConfiguration {
-        return Self.sharedTemporalConfig
-    }
-    
-    /// Get user patterns
-    internal func getUserPatterns() -> UserPatterns {
-        return Self.sharedUserPatterns
-    }
-    
-    /// Set user patterns
-    internal func setUserPatterns(_ patterns: UserPatterns) {
-        Self.sharedUserPatterns = patterns
-    }
-    
-    /// Provide user feedback for pattern learning (validated)
-    /// - Parameters:
-    ///   - eventType: Type of event (e.g., "doorbell_motion")
-    ///   - wasFalsePositive: Whether user marked as false positive
-    public func provideFeedback(eventType: String, wasFalsePositive: Bool) {
-        // Only allow in full or degraded mode
-        guard currentMode.isFeatureAvailable(.userPatternLearning) else { return }
-        
-        // Validate event type is reasonable
-        guard eventType.count <= 100, !eventType.isEmpty else { return }
-        
-        var patterns = Self.sharedUserPatterns
-        patterns.learn(eventType: eventType, wasFalsePositive: wasFalsePositive)
-        try? patterns.save()
-        Self.sharedUserPatterns = patterns
-    }
-    
-    /// Get user pattern insights
-    public func getUserPatternInsights() -> DeliveryPatternInsights {
-        return Self.sharedUserPatterns.getDeliveryPatternInsights()
-    }
-    
-    /// Get telemetry metrics (privacy-safe)
-    public func getTelemetryMetrics() -> DampeningMetrics {
-        return TemporalTelemetry.shared.getMetrics()
-    }
-    
-    /// Export telemetry as JSON
-    public func exportTelemetry() -> String? {
-        return TemporalTelemetry.shared.exportMetrics()
-    }
-    
-    /// Reset user patterns (for testing or user request)
-    public func resetUserPatterns() {
-        var patterns = Self.sharedUserPatterns
-        patterns.reset()
-        try? patterns.save()
-        Self.sharedUserPatterns = patterns
-    }
-
-    // MARK: - Training-free Reasoning Configuration (Feature Flags)
-    /// Set training-free reasoning feature flags (FEAR-Chain, Symbolic Planner, etc.)
-    /// Note: currently no behavior change until planner integration is enabled.
-    public func setReasoningConfig(_ config: ReasoningConfig) {
-        self.reasoningConfig = config
-        Logger(subsystem: "com.novinintelligence", category: "config").info("Reasoning flags updated: fear=\(config.enableFearChain), sym=\(config.enableSymbolicPlanner), aff=\(config.enableAffordancePlanner), mirror=\(config.enableEnvironmentalMirror)")
-    }
-
-    /// Enable in-memory application of mirror updates (non-persistent)
-    public func setApplyMirrorUpdates(_ on: Bool) {
-        self.applyMirrorUpdates = on
-        Logger(subsystem: "com.novinintelligence", category: "config").info("Mirror apply-updates set to: \(on)")
-    }
-
-    /// Get current reasoning feature flags
-    public func getReasoningConfig() -> ReasoningConfig { reasoningConfig }
-    
-    // MARK: - Enterprise Health & Monitoring
-    
-    /// Get current system health
-    public func getSystemHealth() -> SystemHealth {
-        return HealthMonitor.shared.getHealth(rateLimiter: rateLimiter)
-    }
-    
-    /// Get current SDK operational mode
-    public func getCurrentMode() -> SDKMode {
-        return currentMode
-    }
-    
-    /// Set SDK operational mode (for testing or degraded operation)
-    public func setMode(_ mode: SDKMode) {
-        currentMode = mode
-        Logger(subsystem: "com.novinintelligence", category: "mode").info("SDK mode changed to: \(mode.rawValue)")
-    }
-    
-    /// Get audit trail for request
-    public func getAuditTrail(requestId: UUID) -> AuditTrail? {
-        return AuditTrailManager.shared.getTrail(requestId: requestId)
-    }
-    
-    /// Get recent audit trails
-    public func getRecentAuditTrails(limit: Int = 100) -> [AuditTrail] {
-        return AuditTrailManager.shared.getRecentTrails(limit: limit)
-    }
-    
-    /// Export all audit trails as JSON
-    public func exportAuditTrails() -> String? {
-        return AuditTrailManager.shared.exportAllTrails()
-    }
-    
-    /// Reset rate limiter (for testing)
-    public func resetRateLimiter() {
-        rateLimiter.reset()
-    }
-    
+    private var initTask: Task<Void, Error>? = nil
+{{ ... }}
     // MARK: - Initialization
     
     /// Initialize the NovinIntelligence SDK with enterprise features
     /// - Parameter brandConfig: Optional brand-specific configuration
     public func initialize(brandConfig: String? = nil) async throws {
-        guard !isInitialized else { return }
-        return try await withCheckedThrowingContinuation { continuation in
-            processingQueue.async {
-                do {
-                    // Load rules from bundled JSON (or fallback)
-                    var engine = self.reasoningEngine
-                    let count = engine.loadRules()
-                    self.reasoningEngine = engine
+        // Fast path: already initialized
+        if isInitialized { return }
 
-                    // Perform a lightweight feature extraction sanity check
-                    let sanity = self.featureExtractor.extractNamedFeatures(from: [:])
-                    if sanity.isEmpty {
-                        // Graceful degradation: Fall back to minimal mode
+        // If an initialization is already in progress, await it
+        if let existing = initTask {
+            try await existing.value
+            return
+        }
                         self.currentMode = .minimal
                         Logger(subsystem: "com.novinintelligence", category: "init").warning("Feature extraction failed, entering minimal mode")
                     }
                     
                     // Load user patterns (graceful degradation if fails)
                     // Note: UserPatterns.load() doesn't throw, but we wrap for future-proofing
-                    Self.sharedUserPatterns = UserPatterns.load()
-                    
-                    self.isInitialized = true
-                    Logger(subsystem: "com.novinintelligence", category: "init").info("✅ SDK v\(Self.sdkVersion) initialized with \(count) rules, mode: \(self.currentMode.rawValue)")
-                    continuation.resume(returning: ())
-                } catch {
-                    continuation.resume(throwing: error)
+                        Self.sharedUserPatterns = UserPatterns.load()
+
+                        self.isInitialized = true
+                        Logger(subsystem: "com.novinintelligence", category: "init").info("✅ SDK v\(Self.sdkVersion) initialized with \(count) rules, mode: \(self.currentMode.rawValue)")
+                        continuation.resume(returning: ())
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
                 }
             }
+        }
+
+        // Publish the task so concurrent callers can await it
+        initTask = task
+        do {
+            try await task.value
+        } catch {
+            // Reset on failure so a later call can retry
+            initTask = nil
+            throw error
         }
     }
     
