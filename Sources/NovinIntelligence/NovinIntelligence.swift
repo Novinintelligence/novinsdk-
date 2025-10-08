@@ -3,13 +3,12 @@ import os.log
 /// Main NovinIntelligence SDK class - Enterprise Edition
 @available(iOS 15.0, macOS 12.0, *)
 public final class NovinIntelligence: @unchecked Sendable {
-    /// Shared singleton instance
     public static let shared = NovinIntelligence()
 
     // MARK: - State
     private var isInitialized = false
     private var initTask: Task<Void, Error>? = nil
-{{ ... }}
+    
     // MARK: - Initialization
     
     /// Initialize the NovinIntelligence SDK with enterprise features
@@ -23,30 +22,42 @@ public final class NovinIntelligence: @unchecked Sendable {
             try await existing.value
             return
         }
-                        self.currentMode = .minimal
-                        Logger(subsystem: "com.novinintelligence", category: "init").warning("Feature extraction failed, entering minimal mode")
-                    }
-                    
-                    // Load user patterns (graceful degradation if fails)
-                    // Note: UserPatterns.load() doesn't throw, but we wrap for future-proofing
+
+        // Perform initialization once and share task among concurrent callers
+        let task = Task {
+            try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
+                self.processingQueue.async {
+                    do {
+                        // Load rules from bundled JSON (or fallback)
+                        var engine = self.reasoningEngine
+                        let count = engine.loadRules()
+                        self.reasoningEngine = engine
+
+                        // Sanity check
+                        let sanity = self.featureExtractor.extractNamedFeatures(from: [:])
+                        if sanity.isEmpty {
+                            self.currentMode = .minimal
+                            Logger(subsystem: "com.novinintelligence", category: "init").warning("Feature extraction failed, entering minimal mode")
+                        }
+
+                        // Load user patterns (graceful degradation if fails)
                         Self.sharedUserPatterns = UserPatterns.load()
 
                         self.isInitialized = true
                         Logger(subsystem: "com.novinintelligence", category: "init").info("✅ SDK v\(Self.sdkVersion) initialized with \(count) rules, mode: \(self.currentMode.rawValue)")
                         continuation.resume(returning: ())
                     } catch {
+                        self.isInitialized = false
                         continuation.resume(throwing: error)
                     }
                 }
             }
         }
 
-        // Publish the task so concurrent callers can await it
         initTask = task
         do {
             try await task.value
         } catch {
-            // Reset on failure so a later call can retry
             initTask = nil
             throw error
         }
