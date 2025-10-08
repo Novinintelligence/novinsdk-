@@ -216,7 +216,7 @@ public struct ReasoningSwift {
         
         // Step 1: Observe raw inputs (like LLM token-by-token processing)
         let timestamp = features?["hour_cos"] ?? 0.0
-        let homeMode = currentContext["home_mode"] as? String ?? "unknown"
+        let homeMode = (currentContext["home_mode"] as? String) ?? ((currentContext["metadata"] as? [String: Any])?["home_mode"] as? String) ?? "unknown"
         let eventType = currentContext["type"] as? String ?? "unknown"
         let eventConfidence = features?["event_confidence"] ?? 0.5
         

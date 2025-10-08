@@ -1,28 +1,45 @@
 import Foundation
 import os.log
-
 /// Main NovinIntelligence SDK class - Enterprise Edition
 @available(iOS 15.0, macOS 12.0, *)
 public final class NovinIntelligence: @unchecked Sendable {
     /// Shared singleton instance
     public static let shared = NovinIntelligence()
-    
+
     // MARK: - State
     private var isInitialized = false
     private var currentMode: SDKMode = .full
-    
+    // Training-free reasoning flags (no-op until features wired in)
+    private var reasoningConfig: ReasoningConfig = .default
+
     // MARK: - Processing
     private let processingQueue = DispatchQueue(label: "com.novinintelligence.processing", qos: .userInitiated)
-    
+
     // MARK: - Core AI Components
     private let featureExtractor = FeatureExtractorSwift()
     private var reasoningEngine = ReasoningSwift()
     private let fusionEngine = IntelligentFusion()
-    
+    // Phase 2: FEAR-Chain components (lightweight, deterministic)
+    private let fearHeuristic = FearHeuristic()
+    private let normalityTracker = NormalityTracker()
+    private var safetyAdjustment: Double = 0.0 // FEAR-Chain adjustment (0.0 - 1.0)
+    // Phase 3: Symbolic planner components (training-free)
+    private let symbolicPlanner = SymbolicReasoningEngine()
+    private let affordancePlanner = AffordancePlanner()
+    private let symbolicTranslator = SymbolicTranslator()
+    // Phase 4: Environmental mirror components (training-free)
+    private let environmentalMirror = EnvironmentalMirror()
+    private let symbolicUpdater = SymbolicUpdater()
+    private var applyMirrorUpdates: Bool = false
+    private var mirrorAddedPredicates: Set<String> = []
+    private var mirrorSuppressedPredicates: Set<String> = []
+
     // MARK: - Enterprise Components
     private let rateLimiter = RateLimiter(maxTokens: 100, refillRate: 100)
     private let eventChainAnalyzer = EventChainAnalyzer()
     private let zoneClassifier = ZoneClassifier()
+    // P1: Minimal belief store (progressive reasoning, lightweight, deterministic)
+    private var beliefStore = MinimalBeliefStore()
     
     // MARK: - Version
     public static let sdkVersion = "2.0.0-enterprise"
@@ -96,6 +113,23 @@ public final class NovinIntelligence: @unchecked Sendable {
         try? patterns.save()
         Self.sharedUserPatterns = patterns
     }
+
+    // MARK: - Training-free Reasoning Configuration (Feature Flags)
+    /// Set training-free reasoning feature flags (FEAR-Chain, Symbolic Planner, etc.)
+    /// Note: currently no behavior change until planner integration is enabled.
+    public func setReasoningConfig(_ config: ReasoningConfig) {
+        self.reasoningConfig = config
+        Logger(subsystem: "com.novinintelligence", category: "config").info("Reasoning flags updated: fear=\(config.enableFearChain), sym=\(config.enableSymbolicPlanner), aff=\(config.enableAffordancePlanner), mirror=\(config.enableEnvironmentalMirror)")
+    }
+
+    /// Enable in-memory application of mirror updates (non-persistent)
+    public func setApplyMirrorUpdates(_ on: Bool) {
+        self.applyMirrorUpdates = on
+        Logger(subsystem: "com.novinintelligence", category: "config").info("Mirror apply-updates set to: \(on)")
+    }
+
+    /// Get current reasoning feature flags
+    public func getReasoningConfig() -> ReasoningConfig { reasoningConfig }
     
     // MARK: - Enterprise Health & Monitoring
     
@@ -237,6 +271,13 @@ public final class NovinIntelligence: @unchecked Sendable {
                     // P1.2: Motion analysis (if motion event)
                     var motionAnalysis: String?
                     var motionFeatures: MotionAnalyzer.MotionFeatures?
+                    // Fuzzy + beliefs (P1)
+                    var fuzzyThreat: Double = -1
+                    var fuzzyIntent: String = ""
+                    var fuzzyIntentScores: [String: Double] = [:]
+                    var fuzzyRules: [String] = []
+                    var beliefPrev: [String: Double] = [:]
+                    var beliefNew: [String: Double] = [:]
                     if let metadata = request["metadata"] as? [String: Any],
                        (request["type"] as? String)?.contains("motion") == true {
                         let analyzed = MotionAnalyzer.analyzeFromMetadata(metadata)
@@ -249,6 +290,47 @@ public final class NovinIntelligence: @unchecked Sendable {
                         } else if analyzed.activityType == .loitering {
                             features["event_motion"] = (features["event_motion"] ?? 1.0) * 1.3
                         }
+
+                        // Fuzzy micro-kernel (duration/energy from metadata if present)
+                        let duration = analyzed.duration
+                        let energy = analyzed.energy
+                        // Home mode + activity hint
+                        let homeMode = (metadata["home_mode"] as? String) ?? "home"
+                        let activityHint = (metadata["activity"] as? String)
+                        // Event hour from event timestamp (P1: use event timestamp, not wall clock)
+                        let cfg = self.getTemporalConfiguration()
+                        var cal = Calendar(identifier: .gregorian)
+                        cal.timeZone = cfg.timezone
+                        let eventTs = (request["timestamp"] as? Double) ?? Date().timeIntervalSince1970
+                        let eventHour = cal.component(.hour, from: Date(timeIntervalSince1970: eventTs))
+
+                        let fuzzy = MotionAnalyzer.fuzzyAssess(
+                            duration: duration,
+                            energy: energy,
+                            zoneRisk: zoneRiskScore,
+                            eventHour: eventHour,
+                            homeMode: homeMode,
+                            activityHint: activityHint
+                        )
+                        fuzzyThreat = fuzzy.threat
+                        fuzzyIntent = fuzzy.intent
+                        fuzzyIntentScores = fuzzy.intentScores
+                        fuzzyRules = fuzzy.rules
+
+                        // Minimal belief update (P1): accumulate evidence across events
+                        // Map fuzzy intents to hypotheses and add chain/intrusion signal if present later
+                        var evidence: [String: Double] = [:]
+                        evidence["delivery"] = fuzzyIntentScores["delivery"] ?? 0.0
+                        evidence["prowler"] = fuzzyIntentScores["prowler"] ?? 0.0
+                        evidence["pet"] = fuzzyIntentScores["pet"] ?? 0.0
+                        // intrusion evidence will be finalized after chain pattern detection below
+                        // For now, seed with fraction of prowler likelihood
+                        evidence["intrusion"] = max(0.0, (fuzzyIntentScores["prowler"] ?? 0.0) * 0.5)
+
+                        let key = (metadata["location"] as? String) ?? "unknown"
+                        let update = self.beliefStore.update(key: key, evidence: evidence)
+                        beliefPrev = update.prev
+                        beliefNew = update.next
                     }
                     
                     // Inject zone risk into features
@@ -285,28 +367,127 @@ public final class NovinIntelligence: @unchecked Sendable {
                     
                     // 4) Apply chain pattern adjustment
                     var finalScore = fused.finalScore + chainAdjustment
+
+                    // 4.1) FEAR-Chain safety adjustment (training-free, lightweight)
+                    var fearScore: Double = 0.0
+                    var normality: Double = 0.0
+                    var safetyAdjustmentVal: Double = 0.0
+                    if self.reasoningConfig.enableFearChain {
+                        fearScore = self.fearHeuristic.score(features: features)
+                        // Compute normality against running mean BEFORE update
+                        normality = self.normalityTracker.score(features: features)
+                        // Update statistics for next observations (online, no training)
+                        self.normalityTracker.update(features: features)
+                        // Conservative weights: amplify threat slightly, dampen by normality
+                        let alpha = 0.15
+                        let beta = 0.10
+                        safetyAdjustmentVal = alpha * fearScore - beta * normality
+                        finalScore += safetyAdjustmentVal
+                    }
+
+                    // Pet-in-home dampening (P1)
+                    if let metadata = request["metadata"] as? [String: Any] {
+                        let homeMode = (metadata["home_mode"] as? String) ?? "home"
+                        if homeMode == "home" {
+                            // If fuzzy intent is pet with meaningful weight, dampen
+                            let petWeight = fuzzyIntentScores["pet"] ?? 0.0
+                            if petWeight > 0.4 {
+                                let cfg = self.getTemporalConfiguration()
+                                finalScore = finalScore * (1.0 - min(1.0, max(0.0, cfg.petDampeningFactor)))
+                            }
+                        }
+                    }
+
                     finalScore = max(0.0, min(1.0, finalScore))
                     
-                    // 5) Map and build assessment
+                    // 5) Optional symbolic planning (training-free, behind flags)
+                    var combinedPlan: Plan? = nil
+                    if self.reasoningConfig.enableSymbolicPlanner || self.reasoningConfig.enableAffordancePlanner {
+                        // Build initial world from features via translator
+                        let preds = self.symbolicTranslator.translate(features: features, request: request)
+                        let world = WorldStateGraph()
+                        for p in preds { world.addPredicate(p) }
+
+                        var steps: [Action] = []
+                        if self.reasoningConfig.enableAffordancePlanner {
+                            let metadata = request["metadata"] as? [String: Any]
+                            let ap = self.affordancePlanner.suggest(features: features, metadata: metadata)
+                            steps.append(contentsOf: ap.steps)
+                        }
+                        if self.reasoningConfig.enableSymbolicPlanner {
+                            let sp = self.symbolicPlanner.plan(initial: world, goalDescription: [Predicate("stage_act")], maxNodes: 128)
+                            steps.append(contentsOf: sp.steps)
+                        }
+                        combinedPlan = Plan(steps: steps, estimatedCost: Double(steps.count))
+                    }
+
+                    // 5.1) Environmental mirror (optional)
+                    var mirrorSummary: String? = nil
+                    if self.reasoningConfig.enableEnvironmentalMirror {
+                        // Predicted predicates from fused evidence
+                        var predicted = self.buildPredictedPredicates(from: fused)
+                        // Observed predicates from translator
+                        let observedSet = Set(self.symbolicTranslator.translate(features: features, request: request))
+                        let diff = self.environmentalMirror.diff(predicted: predicted, observed: observedSet)
+                        let missingCount = diff.missingPredicates.count
+                        let unexpectedCount = diff.unexpectedPredicates.count
+                        var updatesCount = 0
+                        if missingCount > 0 || unexpectedCount > 0 {
+                            let updates = self.symbolicUpdater.proposeUpdates(diff: diff)
+                            updatesCount = updates.count
+                            let missing = diff.missingPredicates.map { $0.name }.joined(separator: ", ")
+                            let unexpected = diff.unexpectedPredicates.map { $0.name }.joined(separator: ", ")
+                            let updateHints = updates.map { $0.description }.joined(separator: "; ")
+                            mirrorSummary = "Mirror mismatch: missing=[\(missing)] unexpected=[\(unexpected)] | Updates: \(updateHints)"
+
+                            // Apply updates in-memory if enabled
+                            if self.applyMirrorUpdates {
+                                // Persist sets for future assessments (process lifetime only)
+                                for p in diff.missingPredicates { self.mirrorAddedPredicates.insert(p.name) }
+                                for p in diff.unexpectedPredicates { self.mirrorSuppressedPredicates.insert(p.name) }
+                            }
+                        } else {
+                            mirrorSummary = "Mirror: predicted matches observed"
+                        }
+
+                        // Telemetry
+                        MirrorTelemetry.shared.record(missing: missingCount, unexpected: unexpectedCount, updates: updatesCount, durationMs: 0)
+                    }
+
+                    // 6) Map and build assessment
                     let level = self.mapScoreToThreatLevel(finalScore)
-                    let reasoning = self.buildExplanation(
+                    var reasoning = self.buildExplanation(
                         fused: fused,
                         rules: ruleResult,
                         chainPattern: chainPattern,
                         motionAnalysis: motionAnalysis,
-                        zoneRiskScore: zoneRiskScore
+                        zoneRiskScore: zoneRiskScore,
+                        plan: combinedPlan,
+                        mirror: mirrorSummary
                     )
+                    // Append fuzzy and belief trace for transparency (P1)
+                    var traceParts: [String] = []
+                    if fuzzyThreat >= 0 {
+                        traceParts.append("Fuzzy: intent=\(fuzzyIntent) threat=\(String(format: "%.2f", fuzzyThreat)) rules=\(fuzzyRules.prefix(2).joined(separator: ","))")
+                    }
+                    if !beliefNew.isEmpty {
+                        func pct(_ x: Double?) -> String { String(format: "%.0f%%", (x ?? 0)*100) }
+                        let deltaIntr = (beliefNew["intrusion"] ?? 0) - (beliefPrev["intrusion"] ?? 0)
+                        traceParts.append("Beliefs: deliv=\(pct(beliefNew["delivery"])) intr=\(pct(beliefNew["intrusion"])) (Δ=\(String(format: "%.0f%%", deltaIntr*100))) prowler=\(pct(beliefNew["prowler"])) pet=\(pct(beliefNew["pet"]))")
+                    }
+                    if !traceParts.isEmpty { reasoning += " | " + traceParts.joined(separator: " | ") }
                     
                     // 6) Generate personalized, adaptive explanation
                     let zone = self.zoneClassifier.classifyLocation(
                         (request["metadata"] as? [String: Any])?["location"] as? String ?? "unknown"
                     )
                     let config = self.getTemporalConfiguration()
-                    let calendar = Calendar.current
-                    var calendarWithTZ = calendar
+                    // P1: Time context from EVENT TIMESTAMP (not wall clock)
+                    var calendarWithTZ = Calendar(identifier: .gregorian)
                     calendarWithTZ.timeZone = config.timezone
-                    let now = Date()
-                    let currentHour = calendarWithTZ.component(.hour, from: now)
+                    let eventTs = (request["timestamp"] as? Double) ?? Date().timeIntervalSince1970
+                    let eventDate = Date(timeIntervalSince1970: eventTs)
+                    let currentHour = calendarWithTZ.component(.hour, from: eventDate)
                     let isDeliveryWindow = (config.deliveryWindowStart...config.deliveryWindowEnd).contains(currentHour)
                     let isNight = currentHour >= config.nightStart || currentHour < config.nightEnd
                     
@@ -359,7 +540,18 @@ public final class NovinIntelligence: @unchecked Sendable {
                             "bayesian": fused.bayesianContribution,
                             "rules": fused.ruleContribution,
                             "chain_adjustment": chainAdjustment,
-                            "zone_risk": zoneRiskScore
+                            "zone_risk": zoneRiskScore,
+                            "fuzzy_threat": (fuzzyThreat >= 0 ? fuzzyThreat : 0.0),
+                            "belief_delivery": beliefNew["delivery"] ?? 0.0,
+                            "belief_intrusion": beliefNew["intrusion"] ?? 0.0,
+                            "belief_prowler": beliefNew["prowler"] ?? 0.0,
+                            "belief_pet": beliefNew["pet"] ?? 0.0,
+                            "fear": self.reasoningConfig.enableFearChain ? fearScore : 0.0,
+                            "normality": self.reasoningConfig.enableFearChain ? normality : 0.0,
+                            "safety_adjustment": self.reasoningConfig.enableFearChain ? safetyAdjustmentVal : 0.0,
+                            "mirror_missing": self.reasoningConfig.enableEnvironmentalMirror ? Double(MirrorTelemetry.shared.lastMissing) : 0.0,
+                            "mirror_unexpected": self.reasoningConfig.enableEnvironmentalMirror ? Double(MirrorTelemetry.shared.lastUnexpected) : 0.0,
+                            "mirror_updates": self.reasoningConfig.enableEnvironmentalMirror ? Double(MirrorTelemetry.shared.lastUpdates) : 0.0
                         ],
                         rulesTriggered: ruleResult.factors,
                         chainPattern: chainPattern?.name,
@@ -512,7 +704,9 @@ public final class NovinIntelligence: @unchecked Sendable {
         rules: ReasoningSwift.Result,
         chainPattern: EventChainAnalyzer.ChainPattern?,
         motionAnalysis: String?,
-        zoneRiskScore: Double
+        zoneRiskScore: Double,
+        plan: Plan?,
+        mirror: String?
     ) -> String {
         var parts: [String] = []
         parts.append("Assessment: \(mapScoreToThreatLevel(fused.finalScore).rawValue.uppercased())")
@@ -529,6 +723,14 @@ public final class NovinIntelligence: @unchecked Sendable {
         
         // Zone risk
         parts.append("Zone Risk: \(String(format: "%.0f", zoneRiskScore * 100))%")
+
+        // Optional plan steps
+        if let plan = plan, !plan.steps.isEmpty {
+            let stepNames = plan.steps.map { $0.name }.joined(separator: " → ")
+            parts.append("Plan: \(stepNames)")
+        }
+        // Optional mirror summary
+        if let mirror = mirror { parts.append(mirror) }
         
         // Top math evidence by weight
         let top = fused.explanation.sorted { $0.weight > $1.weight }.prefix(3)
@@ -544,5 +746,21 @@ public final class NovinIntelligence: @unchecked Sendable {
         parts.append("Confidence: \(String(format: "%.0f", fused.confidence*100))%")
         parts.append("Final: \(String(format: "%.1f", fused.finalScore*100))% threat probability")
         return parts.joined(separator: " | ")
+    }
+
+    // MARK: - Phase 4 helpers
+    private func buildPredictedPredicates(from fused: IntelligentFusion.FusionResult) -> Set<Predicate> {
+        var set: Set<Predicate> = []
+        // Include starting planner stage to align with translator's observed seeds
+        set.insert(Predicate("stage_observe"))
+        for e in fused.explanation where e.present > 0.5 {
+            // Map evidence factor names to canonical predicate names
+            let name = e.name
+            set.insert(Predicate(name))
+        }
+        // Apply in-memory mirror adjustments if any
+        for a in mirrorAddedPredicates { set.insert(Predicate(a)) }
+        for s in mirrorSuppressedPredicates { set.remove(Predicate(s)) }
+        return set
     }
 }

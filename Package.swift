@@ -9,8 +9,12 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "NovinIntelligence",
+            name: "Novin",
             targets: ["NovinIntelligence"]
+        ),
+        .executable(
+            name: "novin-prod",
+            targets: ["NovinProd"]
         )
     ],
     targets: [
@@ -19,12 +23,21 @@ let package = Package(
             dependencies: [],
             path: "Sources/NovinIntelligence",
             exclude: [
-                "Resources/python"
+                // Exclude all Python-related files to ensure Swift-only SDK
+                "Resources/python",
+                "Resources/novin_ai_bridge.py",
+                "Resources/requirements.txt",
+                "Resources/install_dependencies.py"
             ],
             resources: [
                 .copy("Rules")
             ],
             plugins: []
+        ),
+        .executableTarget(
+            name: "NovinProd",
+            dependencies: ["NovinIntelligence"],
+            path: "Sources/NovinProd"
         ),
         .testTarget(
             name: "NovinIntelligenceTests",

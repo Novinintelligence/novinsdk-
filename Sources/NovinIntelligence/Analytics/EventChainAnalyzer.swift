@@ -1,7 +1,5 @@
 import Foundation
 
-/// Enterprise event chain analysis for sequence detection
-@available(iOS 15.0, macOS 12.0, *)
 public final class EventChainAnalyzer: @unchecked Sendable {
     
     // MARK: - Configuration
@@ -11,6 +9,8 @@ public final class EventChainAnalyzer: @unchecked Sendable {
     // MARK: - State
     private let queue = DispatchQueue(label: "com.novinintelligence.eventchain")
     private var eventBuffer: [SecurityEvent] = []
+    
+    public init() {}
     
     // MARK: - Types
     

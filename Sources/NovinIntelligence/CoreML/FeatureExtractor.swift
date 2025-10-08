@@ -113,12 +113,23 @@ struct FeatureExtractorSwift {
     }
 
     private func addEventFeatures(from event: [String: Any], into out: inout [String: Double]) {
-        let type = ((event["type"] as? String) ?? (event["event_type"] as? String) ?? "unknown").lowercased()
+        let rawType = ((event["type"] as? String) ?? (event["event_type"] as? String) ?? "unknown").lowercased()
+        let type: String = {
+            // Normalize common vendor-specific types
+            if rawType.contains("motion") { return "motion" }
+            if rawType.contains("glass") { return "glassbreak" }
+            return rawType
+        }()
         let data = (event["event_data"] as? [String: Any]) ?? (event["metadata"] as? [String: Any]) ?? [:]
         let eventTypes = ["motion","sound","door","window","face","smoke","fire","glassbreak","pet","vehicle"]
         for et in eventTypes {
             out["event_\(et)"] = (type == et) ? 1.0 : 0.0
         }
+        // Derive specific subtypes
+        if let soundType = (data["sound_type"] as? String)?.lowercased(), soundType.contains("glass") {
+            out["event_glassbreak"] = 1.0
+        }
+
         // Clamp numeric fields into [0,1] or normalized ranges
         let confidence = (data["confidence"] as? Double) ?? (event["confidence"] as? Double) ?? 0.5
         out["event_confidence"] = max(0.0, min(1.0, confidence))

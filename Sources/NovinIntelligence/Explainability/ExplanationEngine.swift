@@ -46,7 +46,9 @@ public struct ExplanationEngine {
             motionAnalysis: motionAnalysis,
             zone: zone,
             timeContext: timeContext,
-            homeMode: homeMode
+            homeMode: homeMode,
+            eventType: eventType,
+            userPatterns: userPatterns
         )
         
         // Build detailed reasoning
@@ -122,72 +124,109 @@ public struct ExplanationEngine {
         motionAnalysis: MotionAnalyzer.MotionFeatures?,
         zone: ZoneClassifier.Zone,
         timeContext: TimeContext,
-        homeMode: String
+        homeMode: String,
+        eventType: String,
+        userPatterns: UserPatterns
     ) -> String {
         
-        // Chain pattern takes priority
+        // Chain pattern takes priority with deeper reasoning and chain influence
         if let pattern = chainPattern {
+            var baseSummary = ""
             switch pattern.name {
             case "package_delivery":
-                return "📦 Likely a package delivery at your \(zone.name.replacingOccurrences(of: "_", with: " "))"
+                baseSummary = "📦 This appears to be a package delivery at your \(zone.name.replacingOccurrences(of: "_", with: " ")) because the brief motion followed a doorbell event, matching typical delivery patterns."
                 
             case "intrusion_sequence":
-                return "⚠️ Unusual activity pattern detected at \(zone.name.replacingOccurrences(of: "_", with: " "))"
+                baseSummary = "⚠️ The sequence of events at \(zone.name.replacingOccurrences(of: "_", with: " ")) suggests someone may be attempting to enter, as motion led to a door event without stopping."
                 
             case "forced_entry":
-                return "🚨 Possible forced entry attempt at \(zone.name.replacingOccurrences(of: "_", with: " "))"
+                baseSummary = "🚨 Rapid repeated events at \(zone.name.replacingOccurrences(of: "_", with: " ")) indicate someone trying to force entry, not normal access."
                 
             case "active_break_in":
-                return "🚨 ALERT: Active break-in detected at \(zone.name.replacingOccurrences(of: "_", with: " "))"
+                baseSummary = "🚨 ALERT: Glass breaking followed immediately by motion at \(zone.name.replacingOccurrences(of: "_", with: " ")) signals an active break-in in progress."
                 
             case "prowler_activity":
-                return "👁️ Someone moving around your property perimeter"
+                baseSummary = "👁️ Movement across multiple zones suggests someone is scoping your property perimeter at \(zone.name.replacingOccurrences(of: "_", with: " "))."
                 
             default:
                 break
             }
+            // Add user pattern context if chain is influenced by past behaviors
+            if userPatterns.deliveryFrequency > 0.5 && pattern.name == "package_delivery" {
+                baseSummary += " My learning from your frequent deliveries helped recognize this pattern."
+            }
+            if let fpCount = userPatterns.falsePositiveHistory[eventType], fpCount > 3 {
+                baseSummary += " Though similar events have been false alarms before, this chain still warrants attention."
+            }
+            return baseSummary
         }
         
-        // Motion-based summaries
+        // Motion-based summaries with deeper reasoning and user context
         if let motion = motionAnalysis {
             let location = zone.name.replacingOccurrences(of: "_", with: " ")
             
+            var baseSummary = ""
             switch motion.activityType {
             case .package_drop:
-                return "📦 Brief activity at \(location) - likely a delivery"
+                baseSummary = "📦 Brief motion at \(location) is consistent with a delivery (short duration, low energy)."
             case .pet:
-                return "🐾 Pet movement detected at \(location)"
+                baseSummary = "🐾 Pet-like motion at \(location) (erratic, low-intensity pattern)."
             case .loitering:
-                return "👤 Someone lingering near \(location)"
+                baseSummary = "👁️ Sustained motion near \(location) for over 30 seconds with moderate energy (loitering pattern)."
             case .walking:
-                return "🚶 Person walking past \(location)"
+                baseSummary = "↔︎ Motion at \(location) with steady medium energy (walking-like pattern)."
             case .running:
-                return "🏃 Fast movement detected at \(location)"
+                baseSummary = "↯ Motion at \(location) with high energy/pace (running-like pattern)."
             case .vehicle:
-                return "🚗 Vehicle activity near \(location)"
+                baseSummary = "🚗 Motion signature near \(location) consistent with a vehicle."
             case .stationary:
-                return "📍 Minor movement at \(location)"
+                baseSummary = "📍 Low-level motion at \(location)."
             case .unknown:
-                break
+                baseSummary = "➖ Motion detected at \(location)."
             }
+            
+            // Add user pattern context for intuition
+            if userPatterns.deliveryFrequency > 0.5 && motion.activityType == .package_drop {
+                baseSummary += " My learning from your frequent deliveries helps confirm this."
+            }
+            if let fpCount = userPatterns.falsePositiveHistory[eventType], fpCount > 3 {
+                baseSummary += " Similar motion events have been false alarms before."
+            }
+            if timeContext.isNight && homeMode == "away" {
+                baseSummary += " Night activity while away often raises concerns, but this seems normal."
+            }
+            
+            return baseSummary
         }
         
-        // Time-based context
-        let timePhrase = timeContext.isNight ? "Night activity" : 
-                        timeContext.isDeliveryWindow ? "Daytime activity" : "Activity"
+        // Threat-based fallback with deeper reasoning based on event type and user patterns
         let locationPhrase = zone.name.replacingOccurrences(of: "_", with: " ")
+        let timePhrase = timeContext.isNight ? "nighttime" : timeContext.isDeliveryWindow ? "daytime delivery hours" : "daytime"
         
-        // Threat-based fallback
+        var summary = ""
         switch threatLevel {
         case .critical:
-            return "🚨 URGENT: \(timePhrase) at \(locationPhrase) needs immediate attention"
+            summary = "🚨 URGENT: \(eventType.capitalized) activity at \(locationPhrase) during \(timePhrase) indicates a high-threat situation requiring immediate response."
         case .elevated:
-            return "⚠️ \(timePhrase) at \(locationPhrase) requires your attention"
+            summary = "⚠️ \(eventType.capitalized) activity at \(locationPhrase) during \(timePhrase) has elevated security concerns that warrant your attention."
         case .standard:
-            return "ℹ️ \(timePhrase) detected at \(locationPhrase)"
+            summary = "ℹ️ \(eventType.capitalized) activity at \(locationPhrase) during \(timePhrase) is standard and being monitored for any changes."
         case .low:
-            return "✓ Normal \(timePhrase.lowercased()) at \(locationPhrase)"
+            summary = "✓ Normal \(eventType.lowercased()) activity at \(locationPhrase) during \(timePhrase) appears routine and not concerning."
         }
+        
+        // Add user pattern context for intuition
+        if userPatterns.deliveryFrequency > 0.5 && eventType == "motion" {
+            summary += " My learning from your frequent deliveries helps distinguish normal activity."
+        }
+        if let fpCount = userPatterns.falsePositiveHistory[eventType], fpCount > 3 {
+            summary += " Similar events have been false alarms before, so I'm being less aggressive."
+        }
+        if timeContext.isNight && homeMode == "away" {
+            summary += " Night activity while away often raises concerns, but this seems normal."
+        }
+        
+        return summary
     }
     
     // MARK: - Reasoning Builder
