@@ -15,7 +15,15 @@ let package = Package(
         .executable(
             name: "novin-prod",
             targets: ["NovinProd"]
+        ),
+        .executable(
+            name: "novin-bridge",
+            targets: ["NovinBridge"]
         )
+    ],
+    dependencies: [
+        // Only used by the bridge executable; the core library remains dependency-free
+        .package(url: "https://github.com/apple/swift-nio.git", from: "2.58.0")
     ],
     targets: [
         .target(
@@ -38,6 +46,15 @@ let package = Package(
             name: "NovinProd",
             dependencies: ["NovinIntelligence"],
             path: "Sources/NovinProd"
+        ),
+        .executableTarget(
+            name: "NovinBridge",
+            dependencies: [
+                "NovinIntelligence",
+                .product(name: "NIO", package: "swift-nio"),
+                .product(name: "NIOHTTP1", package: "swift-nio")
+            ],
+            path: "Sources/NovinBridge"
         ),
         .testTarget(
             name: "NovinIntelligenceTests",
